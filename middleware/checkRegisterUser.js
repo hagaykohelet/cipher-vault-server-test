@@ -5,7 +5,6 @@ export default function checkUser(req, res, next){
     }
 
     const checkKeys = Object.keys(newObj)
-    console.log(checkKeys);
     if(checkKeys.length < 2){
         return res.status(400).send("missing keys!")
     }

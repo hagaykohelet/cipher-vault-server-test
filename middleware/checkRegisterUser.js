@@ -5,10 +5,11 @@ export default function checkUser(req, res, next){
     }
 
     const checkKeys = Object.keys(newObj)
+    console.log(checkKeys);
     if(checkKeys.length < 2){
         return res.status(400).send("missing keys!")
     }
-    if(!(checkKeys.includes("username".toLowerCase()) || !(checkKeys.includes("password".toLowerCase())))){
+    if(!(checkKeys.includes("username")) || !(checkKeys.includes("password"))){
         return res.status(400).send("those keys not valid!")
     }
     if(newObj.username === "" || newObj.password === ""){

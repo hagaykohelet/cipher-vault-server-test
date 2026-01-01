@@ -12,8 +12,8 @@ const db = await mongoConnect({
 registerUsers.post('/register', checkUser, async (req, res) => {
     try {
         const newObj = req.body
-        const check = await db.collection("users").find({ username:{$eq : newObj.username} }).toArray()
-        if (check.length > 0) {
+        const check = await db.collection("users").findOne({ username:{$eq : newObj.username} })
+        if (check) {
             return res.status(400).send('this name already exist!')
         }
         newObj["encryptedMessagesCount"] = 0
